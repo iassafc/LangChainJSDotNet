@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.4.2" />
+    <!--<PackageReference Include="System.Text.Json" Version="7.0.3" />-->
+    <PackageReference Include="Lombiq.Npm.Targets" Version="1.4.0" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="node_modules\**" />
+    <EmbeddedResource Remove="node_modules\**" />
+    <None Remove="node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>  
+    <EmbeddedResource Include="dist\url.js" />  
+    <None Remove="dist\url.js" />
+    <EmbeddedResource Include="dist\bundle.js" />  
+    <None Remove="dist\bundle.js" />
+  </ItemGroup>
+
+</Project>

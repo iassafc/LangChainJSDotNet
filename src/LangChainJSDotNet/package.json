@@ -1,0 +1,20 @@
+{
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "langchain": "^0.0.96",
+    "mock-xmlhttprequest": "^8.2.0",
+    "text-encoding": "^0.7.0",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "esmify": "^2.1.1",
+    "gulp": "^4.0.2",
+    "gulp-replace": "^1.1.4",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "scripts": {
+    "dotnet-prebuild": "gulp"
+  }
+}
