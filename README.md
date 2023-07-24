@@ -16,6 +16,15 @@ The official JS/TS version tracks the official Python version closely, therefore
 
 While integrating Python code in .NET presents challenges, Microsoft's [ClearScript](https://github.com/microsoft/ClearScript) library greatly simplifies the integration process with JavaScript code. Hence, for now, this library focuses exclusively on wrapping the JS version of LangChain.
 
+### Installation
+
+Install the [LangChainJSDotNet NuGet package](https://www.nuget.org/packages/LangChainJSDotNet#readme-body-tab).
+
+You may use the .NET command-line interface:
+
+    dotnet add package LangChainJSDotNet --version 0.0.1-*
+
+This command will download and install LangChainJSDotNet along with all its required dependencies.
 
 ## 💡 Usage
 
