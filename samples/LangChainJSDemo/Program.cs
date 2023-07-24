@@ -9,7 +9,7 @@ namespace LangChainJSDemo
         {
             // Simulate an async operation
             await Task.Delay(100);
-            return "super baz";
+            return "5";
         }
     }
 
@@ -22,9 +22,85 @@ namespace LangChainJSDemo
 
         static async Task Main(string[] args)
         {
-            //await RunAgent();
+            //await RunModelAndPrint();
 
-            await RunChain();
+            //await RunModelAndReturn();
+
+            //await RunChain();
+
+            await RunAgent();
+        }
+
+        static async Task RunModelAndPrint()
+        {
+            using var langchainjs = new LangChainJS();
+
+            langchainjs.SetEnvironmentVariable("OPENAI_API_KEY", Configuration["OPENAI_API_KEY"]);
+
+            langchainjs.Setup(@"
+
+                const model = new OpenAI();
+
+                globalThis.run = async () => {
+
+                    const result = await model.call('What would be a good company name a company that makes colorful socks?');
+
+                    console.log(result.trim());
+                }
+            ");
+
+            await langchainjs.InvokeAsync("run");
+        }
+
+        static async Task RunModelAndReturn()
+        {
+            using var langchainjs = new LangChainJS();
+
+            langchainjs.SetEnvironmentVariable("OPENAI_API_KEY", Configuration["OPENAI_API_KEY"]);
+
+            langchainjs.Setup(@"
+
+                const model = new OpenAI({ temperature: 0.9 });
+
+                globalThis.run = async () => {
+
+                    const res = await model.call('What would be a good company name a company that makes colorful socks?');
+
+                    return res.trim();
+                }
+            ");
+
+            var result = await langchainjs.InvokeAsync<string>("run");
+
+            Console.WriteLine(result);
+        }
+
+        static async Task RunChain()
+        {
+            using var langchainjs = new LangChainJS(enableDebugging: false);
+
+            langchainjs.SetEnvironmentVariable("OPENAI_API_KEY", Configuration["OPENAI_API_KEY"]);
+
+            langchainjs.Setup(@"
+
+                const model = new OpenAI({ temperature: 0.9 });
+
+                const template = new PromptTemplate({
+                                                      template: 'What is a good name for a company that makes {product}?',
+                                                      inputVariables: ['product'],
+                                                    });
+
+                chain = new LLMChain({ llm: model, prompt: template });
+
+                globalThis.run = async (prompt) => {
+                    const res = await chain.call({ product: prompt });
+                    return res.text.trim();
+                }
+            ");
+
+            string result = await langchainjs.InvokeAsync<string>("run", "colorful socks");
+
+            Console.WriteLine(result);
         }
 
         static async Task RunAgent()
@@ -63,59 +139,23 @@ namespace LangChainJSDemo
                     }),
                 ];
 
-                globalThis.call = async (input) => {
+                globalThis.run = async (input) => {
 
                     // zero-shot-react-description
                     const executor = await initializeAgentExecutorWithOptions(tools, model, {
                         agentType: ""structured-chat-zero-shot-react-description"",
-                        //verbose: true
+                        /* verbose: true */
                     });
 
-                    console.log(`Executing with input ""${input}""...`);
+                    console.log(`Agent input: ""${input}""...`);
 
                     const result = await executor.call({ input });
-
-                    //console.log(`Got output ${result.output}`);
 
                     return result.output;
                 };
             ");
 
-            string result = await langchainjs.InvokeAsync<string>("call", "What is the result if you substruct 8 by 5?");
-
-            Console.WriteLine(result);
-        }
-
-        static async Task RunChain()
-        {
-            using var langchainjs = new LangChainJS(enableDebugging: false);
-
-            langchainjs.SetEnvironmentVariable("OPENAI_API_KEY", Configuration["OPENAI_API_KEY"]);
-
-            langchainjs.Setup(@"
-
-                const model = new OpenAI({ temperature: 0.9 });
-
-                const template = new PromptTemplate({
-                                                      template: 'What is a good name for a company that makes {product}?',
-                                                      inputVariables: ['product'],
-                                                    });
-
-                chain = new LLMChain({ llm: model, prompt: template });
-
-                globalThis.call = async (prompt) => {
-                    const res = await chain.call({ product: prompt });
-                    return res.text.trim();
-                }
-
-                globalThis.add = (a, b) => {
-                    return a+b;
-                }
-            ");
-
-            int total = langchainjs.Invoke<int>("add", 1, 2);
-
-            string result = await langchainjs.InvokeAsync<string>("call", "bread");
+            string result = await langchainjs.InvokeAsync<string>("run", "What is the result if you substruct 8 by foo?");
 
             Console.WriteLine(result);
         }

@@ -75,12 +75,22 @@ namespace LangChainJSDotNet
             return (T)Convert.ChangeType(result, typeof(T));
         }
 
+        public void Invoke(string funcName, params object[] args)
+        {
+            _engine.Invoke(funcName, args);
+        }
+
         public async Task<T> InvokeAsync<T>(string funcName, params object[] args)
         {
             var result = await _engine.Invoke(funcName, args).ToTask();
 
             // Convert the result to the desired type and return it
             return (T)Convert.ChangeType(result, typeof(T));
+        }
+
+        public async Task InvokeAsync(string funcName, params object[] args)
+        {
+            await _engine.Invoke(funcName, args).ToTask();
         }
 
         private void InitJSEnvironment()
