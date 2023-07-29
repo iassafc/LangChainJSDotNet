@@ -2,12 +2,18 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "langchain": "^0.0.96",
+    "abortcontroller-polyfill": "^1.7.5",
+    "langchain": "^0.0.119",
     "mock-xmlhttprequest": "^8.2.0",
     "text-encoding": "^0.7.0",
+    "web-streams-polyfill": "^4.0.0-beta.3",
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/plugin-transform-logical-assignment-operators": "^7.22.5",
+    "babelify": "^10.0.0",
     "browserify": "^17.0.0",
     "esmify": "^2.1.1",
     "gulp": "^4.0.2",

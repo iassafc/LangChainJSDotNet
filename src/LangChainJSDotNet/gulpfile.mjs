@@ -30,7 +30,8 @@ export const createBundle = () => {
             'src/autogen.js'
         ],
         {
-            plugin: ['esmify']
+            plugin: ['esmify'],
+            transform: [['babelify', { global: true }]]
         })
         .bundle()
         .pipe(source('bundle.js'))
