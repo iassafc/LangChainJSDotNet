@@ -16,6 +16,14 @@ The official JS/TS version tracks the official Python version closely, therefore
 
 While integrating Python code in .NET presents challenges, Microsoft's [ClearScript](https://github.com/microsoft/ClearScript) library greatly simplifies the integration process with JavaScript code. Hence, for now, this library focuses exclusively on wrapping the JS version of LangChain.
 
+## Features
+
+- No porting required: Use the official LangChainJS library in .NET.
+- The latest LangChain features are readily available.
+- Async support: LangChain agents can await .NET async methods.
+- Connect from .NET to the new [LangSmith Platform](https://blog.langchain.dev/announcing-langsmith/).
+- Debugging capability: Support for debugging LangChainJS code.
+
 ### Installation
 
 Install the [LangChainJSDotNet NuGet package](https://www.nuget.org/packages/LangChainJSDotNet#readme-body-tab).

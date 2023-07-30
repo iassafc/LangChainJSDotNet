@@ -6,9 +6,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Security.Cryptography;
-using Newtonsoft.Json.Linq;
-using System.Xml.Linq;
 using System.Net.Http;
 
 namespace LangChainJSDotNet
