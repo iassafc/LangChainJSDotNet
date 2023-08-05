@@ -10,16 +10,17 @@
     </Description>
     <PackageTags>LangChain LangChainJS LLM OpenAI</PackageTags>
     <PackageId>LangChainJSDotNet</PackageId>
-    <Version>0.0.1-preview2</Version>
+    <Version>0.0.1-preview4</Version>
     <Authors>Assaf Cohen</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/iassafc/LangChainJSDotNet</RepositoryUrl>
+    <UserSecretsId>5197df41-4abd-4a44-b5af-c48e5bca2feb</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
