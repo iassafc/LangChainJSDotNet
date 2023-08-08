@@ -1,0 +1,35 @@
+name: "Build Branch"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - 'main'
+  push:
+    branches:
+      - main
+
+jobs:
+  build-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Install dotnet'
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.x
+
+      - name: 'Checkout branch'
+        uses: actions/checkout@v3
+        
+      - name: 'Install npm dependencies'
+        run: npm install
+        working-directory: src/LangChainJSDotNet
+
+      - name: 'Restore packages'
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - name: 'Build project'
+        run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
