@@ -10,7 +10,7 @@
     </Description>
     <PackageTags>LangChain LangChainJS LLM OpenAI</PackageTags>
     <PackageId>LangChainJSDotNet</PackageId>
-    <Version>0.0.124.0</Version>
+    <Version>0.0.124.1</Version>
     <Authors>Assaf Cohen</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

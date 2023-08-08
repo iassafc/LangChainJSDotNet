@@ -34,7 +34,7 @@ jobs:
         uses: vers-one/dotnet-project-version-updater@v1.3
         with:
           file: "src/LangChainJSDotNet/LangChainJSDotNet.csproj"
-          version: "${{ steps.regex-match.outputs.group1 }}.0"
+          version: "${{ steps.regex-match.outputs.group1 }}.1"
 
       - name: 'Commit and push'
         run: |
