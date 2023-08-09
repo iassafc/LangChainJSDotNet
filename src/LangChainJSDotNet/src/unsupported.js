@@ -24,6 +24,7 @@ export const unsupportedImports = [
     "./vectorstores/singlestore",
     "./vectorstores/tigris",
     "./vectorstores/analyticdb",
+    "./vectorstores/usearch",
     "./text_splitter",
     "./memory",   
     "./memory/zep",
@@ -36,6 +37,7 @@ export const unsupportedImports = [
     "./document_loaders/web/sonix_audio",
     "./document_loaders/web/azure_blob_storage_file",
     "./document_loaders/web/azure_blob_storage_container",
+    "./document_loaders/web/assemblyai",
     "./chat_models", // deprecated
     "./chat_models/googlevertexai",
     "./chat_models/googlepalm",
