@@ -25,6 +25,7 @@ export const unsupportedImports = [
     "./vectorstores/tigris",
     "./vectorstores/analyticdb",
     "./vectorstores/usearch",
+    "./vectorstores/xata",
     "./text_splitter",
     "./memory",   
     "./memory/zep",
@@ -60,6 +61,7 @@ export const unsupportedImports = [
     "./stores/message/firestore",
     "./stores/message/planetscale",
     "./stores/message/ioredis",
+    "./stores/message/xata",
     "./experimental/multimodal_embeddings/googlevertexai",
     "./package.json",
 ];
