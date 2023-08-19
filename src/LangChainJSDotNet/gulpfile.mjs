@@ -12,7 +12,7 @@ export const generateImports = async () => {
     const lines = keys.map(key => {
         // only allow imports specifically listed in 'supportedImports'
         // or anything without an unsupported prefix, if above root level
-        if ((key.split('/').length > 3 &&
+        if ((key.split('/').length > 2 &&
           !unsupportedImportPrefixes.some(prefix => key.startsWith(prefix))) ||
           supportedImports.includes(key)) {
             return template.bodyItem(key);
