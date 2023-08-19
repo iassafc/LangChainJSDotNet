@@ -4,15 +4,21 @@ import browserify from 'browserify';
 import source from 'vinyl-source-stream';
 import fs from 'fs/promises';
 import * as template from './src/template.js';
-import { unsupportedImports } from './src/unsupported.js';
+import { supportedImports, unsupportedImportPrefixes } from './src/consts.js';
 
 export const generateImports = async () => {
   try {
     const keys = await template.getItems();
     const lines = keys.map(key => {
-        if (!unsupportedImports.includes(key)) {
+        // only allow imports specifically listed in 'supportedImports'
+        // or anything without an unsupported prefix, if above root level
+        if ((key.split('/').length > 3 &&
+          !unsupportedImportPrefixes.some(prefix => key.startsWith(prefix))) ||
+          supportedImports.includes(key)) {
             return template.bodyItem(key);
-        }
+          } else {
+            console.log('Skipping: ' + key);
+          } 
     });
     lines.unshift(template.header);
     lines.push(template.footer);
