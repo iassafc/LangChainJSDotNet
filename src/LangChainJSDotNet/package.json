@@ -4,7 +4,7 @@
   "dependencies": {
     "abortcontroller-polyfill": "^1.7.5",
     "html-to-text": "^9.0.5",
-    "langchain": "^0.0.132",
+    "langchain": "^0.0.133",
     "mock-xmlhttprequest": "^8.2.0",
     "text-encoding": "^0.7.0",
     "web-streams-polyfill": "^4.0.0-beta.3",
