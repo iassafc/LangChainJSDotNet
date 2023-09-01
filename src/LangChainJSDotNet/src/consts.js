@@ -6,6 +6,7 @@ export const unsupportedImportPrefixes = [
     "./document_transformers/",
     "./embeddings/",
     "./experimental/multimodal_embeddings/",
+    "./experimental/chat_models/anthropic_functions",
     "./llms/",
     "./memory/",
     "./retrievers/",
