@@ -4,6 +4,5 @@ updates:
     directory: "src/LangChainJSDotNet"
     schedule:
       interval: "daily"
-    target-branch: "main"
     allow:
       - dependency-name: "langchain"
