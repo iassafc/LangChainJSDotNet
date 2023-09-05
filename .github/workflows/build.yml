@@ -10,7 +10,7 @@ on:
       - 'main'
   push:
     branches:
-      - main
+      - 'main'
 
 jobs:
   build-branch:
@@ -33,3 +33,17 @@ jobs:
 
       - name: 'Build project'
         run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+
+      - name: 'Start testing API'
+        uses: JarvusInnovations/background-action@v1       
+        with:
+          run: |
+            sudo echo "127.0.0.1 api.openai.com" | sudo tee -a /etc/hosts
+            npm install -g @mockoon/cli
+            sudo mockoon-cli start --port 443 --data ./src/LangChainJSDotNet.IntegrationTests/mockoon-api.json &
+          wait-on: |
+            tcp:localhost:443
+          wait-for: 1m
+
+      - name: 'Run Tests'
+        run: dotnet test --runtime linux-x64

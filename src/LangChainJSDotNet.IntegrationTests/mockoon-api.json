@@ -1,0 +1,84 @@
+{
+  "uuid": "edaf93c7-2fa0-41ce-8a4c-42fc65980694",
+  "lastMigration": 28,
+  "name": "OpenAI",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "2328e274-cf74-405c-9870-c15f415721e3",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/completions",
+      "responses": [
+        {
+          "uuid": "6a278943-1b04-4674-a437-24a9f46fe6aa",
+          "body": "{\r\n    \"warning\": \"This model version is deprecated. Migrate before January 4, 2024 to avoid disruption of service. Learn more https://platform.openai.com/docs/deprecations\",\r\n    \"id\": \"cmpl-7sGuJUxqVTcT7b0ZlzLzOPK2e1t76\",\r\n    \"object\": \"text_completion\",\r\n    \"created\": 1693169059,\r\n    \"model\": \"text-davinci-003\",\r\n    \"choices\": [{\r\n            \"text\": \"2\",\r\n            \"index\": 0,\r\n            \"logprobs\": null,\r\n            \"finish_reason\": \"stop\"\r\n        }\r\n    ],\r\n    \"usage\": {\r\n        \"prompt_tokens\": 4,\r\n        \"completion_tokens\": 3,\r\n        \"total_tokens\": 7\r\n    }\r\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "openai-model",
+              "value": "text-davinci-003"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "2328e274-cf74-405c-9870-c15f415721e3"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": true,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
