@@ -1,6 +1,7 @@
 export const unsupportedImportPrefixes = [
     "./agents/toolkits/",
     "./cache/",
+    "./callbacks/handlers/",
     "./chat_models/",
     "./document_loaders/",
     "./document_transformers/",
@@ -10,7 +11,6 @@ export const unsupportedImportPrefixes = [
     "./llms/",
     "./memory/",
     "./retrievers/",
-    //"./schema/document",
     "./storage/",
     "./stores/",
     "./tools/",  
