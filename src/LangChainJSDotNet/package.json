@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "abortcontroller-polyfill": "^1.7.5",
+    "blob-polyfill": "^7.0.20220408",
+    "formdata-polyfill": "^4.0.10",
     "html-to-text": "^9.0.5",
     "langchain": "^0.0.141",
     "mock-xmlhttprequest": "^8.2.0",

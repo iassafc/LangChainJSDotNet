@@ -10,7 +10,7 @@
     </Description>
     <PackageTags>LangChain LangChainJS LLM OpenAI</PackageTags>
     <PackageId>LangChainJSDotNet</PackageId>
-    <Version>0.0.141.1</Version>
+    <Version>0.0.141.2</Version>
     <Authors>Assaf Cohen</Authors>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>

@@ -119,11 +119,44 @@ namespace LangChainJSDotNet
             _engine.Execute(@"globalThis.self = globalThis");
 
             // Implement crypto API (getRandomValues)
-            _engine.AddHostType("MSCrypto", HostItemFlags.PrivateAccess, typeof(Crypto));
+            _engine.AddHostType("HostCrypto", HostItemFlags.PrivateAccess, typeof(Crypto));
             _engine.Execute(@"
                 crypto = {
-                    getRandomValues: array => MSCrypto.GetRandomValues(array)
+                    getRandomValues: array => HostCrypto.GetRandomValues(array)
                 };
+            ");
+
+            // Implement timers API
+            _engine.AddHostObject("hostTimer", HostItemFlags.PrivateAccess, new HostTimer());
+            _engine.Execute(@"
+                let queue = [], nextId = 0;
+                const maxId = 1000000000000, getNextId = () => nextId = (nextId % maxId) + 1;
+                const add = entry => {
+                    const index = queue.findIndex(element => element.due > entry.due);
+                    index >= 0 ? queue.splice(index, 0, entry) : queue.push(entry);
+                }
+                function set(periodic, func, delay) {
+                    const id = getNextId(), now = Date.now(), args = [...arguments].slice(3);
+                    add({ id, periodic, func: () => func(...args), delay, due: now + delay });
+                    hostTimer.Schedule(queue[0].due - now);
+                    return id;
+                };
+                function clear(id) {
+                    queue = queue.filter(entry => entry.id != id);
+                    hostTimer.Schedule(queue.length > 0 ? queue[0].due - Date.now() : -1);
+                };
+                globalThis.setTimeout = set.bind(undefined, false);
+                globalThis.setInterval = set.bind(undefined, true);
+                globalThis.clearTimeout = globalThis.clearInterval = clear.bind();
+                hostTimer.Initialize(() => {
+                    const now = Date.now();
+                    while ((queue.length > 0) && (now >= queue[0].due)) {
+                        const entry = queue.shift();
+                        if (entry.periodic) add({ ...entry, due: now + entry.delay });
+                        entry.func();
+                    }
+                    return queue.length > 0 ? queue[0].due - now : -1;
+                });
             ");
 
             // Simulate process API globally for setting environment variables
@@ -134,7 +167,7 @@ namespace LangChainJSDotNet
             ");
 
             // Required to implement XMLHttpRequest
-            _engine.AddHostObject("hostHttp", HostItemFlags.PrivateAccess, new Http(_httpClient));
+            _engine.AddHostObject("HostHttp", HostItemFlags.PrivateAccess, new Http(_httpClient));
 
             // Implement WHATWG URL Standard:
             _engine.Execute("url.js", LoadScript("LangChainJSDotNet.dist.url.js"));

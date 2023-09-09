@@ -10,10 +10,11 @@ export const unsupportedImportPrefixes = [
     "./llms/",
     "./memory/",
     "./retrievers/",
+    //"./schema/document",
     "./storage/",
     "./stores/",
     "./tools/",  
-    "./vectorstores/",   
+    "./vectorstores/",
 ]
 
 export const supportedImports = [

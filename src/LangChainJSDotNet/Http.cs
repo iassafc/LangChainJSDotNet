@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -61,7 +62,7 @@ namespace LangChainJSDotNet
 
                 response.StatusCode = (int)clientResponse.StatusCode;
 
-                foreach (var header in clientResponse.Headers)
+                foreach (var header in clientResponse.Headers.Concat(clientResponse.Content.Headers))
                 {
                     response.Headers[header.Key] = string.Join(",", header.Value);
                 }

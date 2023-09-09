@@ -23,6 +23,14 @@ AbortSignal.timeout = (duration) =>
 // web-streams-polyfill
 import 'web-streams-polyfill/polyfill';
 
+// blob-polyfill
+import { Blob } from 'blob-polyfill';
+globalThis.Blob = Blob;
+
+// formdata-polyfill
+import { FormData } from 'formdata-polyfill/formdata.min.js';
+globalThis.FormData = FormData;
+
 // mock-xmlhttprequest
 import { newMockXhr } from 'mock-xmlhttprequest';
 
@@ -40,7 +48,7 @@ MockXhr.onSend = async function (request) {
         }
 
         // asyn response from host HttpClient
-        let jsonResponse = await hostHttp.SendAsync(request.url, request.method, headers, str_body);
+        let jsonResponse = await HostHttp.SendAsync(request.url, request.method, headers, str_body);
 
         let response = JSON.parse(jsonResponse);
 
