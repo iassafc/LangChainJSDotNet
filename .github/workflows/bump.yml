@@ -45,8 +45,12 @@ jobs:
           git commit -m "Bump LangChainJSDotNet from ${{ steps.update.outputs.oldVersion }} to ${{ steps.update.outputs.newVersion }}"
           git push origin HEAD:${{ github.event.workflow_run.head_branch }}
 
+      - name: Sleep for 5s
+        uses: juliangruber/sleep-action@v2.0.0
+        with:
+          time: 5s
+
       - name: 'Auto-merge Dependabot PR'
-        # Find the PR number based on the current branch name, and merge based on this number
-        run: 'PR_NUM="$(gh pr list | grep $(git branch --show-current) | cut -f1)"; gh pr merge --auto --merge $PR_NUM'
+        run: 'gh pr merge --auto --merge'
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
