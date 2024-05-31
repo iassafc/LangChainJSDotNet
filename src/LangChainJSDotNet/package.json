@@ -6,7 +6,7 @@
     "blob-polyfill": "^7.0.20220408",
     "formdata-polyfill": "^4.0.10",
     "html-to-text": "^9.0.5",
-    "langchain": "^0.1.37",
+    "langchain": "^0.2.4",
     "mock-xmlhttprequest": "^8.2.0",
     "text-encoding": "^0.7.0",
     "web-streams-polyfill": "^4.0.0-beta.3",
